@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RunwayOps — Fashion Week Show Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <div id="homeView" class="home-wrap">
+    <div class="spotlight"></div>
+
+    <div class="hero">
+      <div class="hero-mark">
+        <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6"  y="18" width="4" height="18" fill="#d4af37"/>
+          <rect x="16" y="10" width="4" height="26" fill="#d4af37"/>
+          <rect x="26" y="2"  width="4" height="34" fill="#d4af37"/>
+          <rect x="36" y="12" width="4" height="24" fill="#d4af37"/>
+          <rect x="46" y="20" width="4" height="16" fill="#d4af37"/>
+        </svg>
+      </div>
+      <p class="hero-eyebrow">THE OFFICIAL BACKSTAGE SYSTEM OF</p>
+      <h1 class="hero-title">RUNWAY<span>OPS</span></h1>
+      <p class="hero-line">From atelier to runway — one system for every show.</p>
+      <p class="hero-copy">
+        Designers submit their collections. Models cast for a spot on the runway.
+        Organizers approve, cast, and choreograph the walk. Guests take their seats.
+        RunwayOps is the single source of truth behind the curtain of a fashion week show.
+      </p>
+      <div class="hero-roles">
+        <span class="role-pill">Designer</span>
+        <span class="role-pill">Model</span>
+        <span class="role-pill">Organizer</span>
+        <span class="role-pill">Guest</span>
+      </div>
+
+      <button id="enterAppBtn" class="btn-primary btn-hero">Enter RunwayOps</button>
+    </div>
+  </div>
+
+  <div id="authBox" class="auth-wrap hidden">
+    <div class="spotlight"></div>
+
+    <div class="auth-card">
+      <div class="logo-mark">
+        <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6"  y="18" width="4" height="18" fill="#d4af37"/>
+          <rect x="16" y="10" width="4" height="26" fill="#d4af37"/>
+          <rect x="26" y="2"  width="4" height="34" fill="#d4af37"/>
+          <rect x="36" y="12" width="4" height="24" fill="#d4af37"/>
+          <rect x="46" y="20" width="4" height="16" fill="#d4af37"/>
+        </svg>
+      </div>
+
+      <h1 class="brand">RUNWAY<span>OPS</span></h1>
+      <p class="eyebrow">DESIGNERS · MODELS · ORGANIZERS · GUESTS</p>
+      <p class="tagline">Backstage operations for fashion week</p>
+
+      <div class="tabs">
+        <button id="loginTabBtn" class="tab-btn active">Login</button>
+        <button id="registerTabBtn" class="tab-btn">Register</button>
+      </div>
+
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button type="submit" class="btn-primary">Login</button>
+        <p id="loginError" class="error"></p>
+      </form>
+
+      <form id="registerForm" class="hidden">
+        <input type="text" id="registerName" placeholder="Full Name" required>
+        <input type="email" id="registerEmail" placeholder="Email" required>
+        <input type="password" id="registerPassword" placeholder="Password" required>
+        <select id="registerRole" required>
+          <option value="">Select Role</option>
+          <option value="designer">Designer</option>
+          <option value="model">Model</option>
+          <option value="organizer">Organizer</option>
+          <option value="guest">Guest</option>
+        </select>
+        <button type="submit" class="btn-primary">Register</button>
+        <p id="registerError" class="error"></p>
+      </form>
+
+      <button id="backToHomeBtn" class="btn-link">&larr; Back to homepage</button>
+    </div>
+  </div>
+
+  <div id="dashboardBox" class="hidden">
+
+    <header class="topbar">
+      <div class="topbar-brand">
+        <svg class="logo-mark-sm" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6"  y="18" width="4" height="18" fill="#d4af37"/>
+          <rect x="16" y="10" width="4" height="26" fill="#d4af37"/>
+          <rect x="26" y="2"  width="4" height="34" fill="#d4af37"/>
+          <rect x="36" y="12" width="4" height="24" fill="#d4af37"/>
+          <rect x="46" y="20" width="4" height="16" fill="#d4af37"/>
+        </svg>
+        <h1 class="brand small">RUNWAY<span>OPS</span></h1>
+      </div>
+      <div class="topbar-right">
+        <span id="welcomeMsg"></span>
+        <button id="logoutBtn" class="btn-ghost">Logout</button>
+      </div>
+    </header>
+
+    <nav class="role-nav" id="roleNav">
+      <button class="nav-btn active" data-view="viewShows">Shows</button>
+      <button class="nav-btn hidden" data-view="viewMyCollections" data-role="designer,admin">My Collections</button>
+      <button class="nav-btn hidden" data-view="viewMyApplications" data-role="model,admin">My Applications</button>
+      <button class="nav-btn hidden" data-view="viewOrganizer" data-role="organizer,admin">Organizer Panel</button>
+    </nav>
+
+    <main class="content">
+
+      <section id="viewShows" class="view">
+
+        <div id="createShowBox" class="card hidden">
+          <p class="eyebrow">ORGANIZER</p>
+          <h2>Create a Fashion Show</h2>
+          <form id="showForm" class="inline-form">
+            <input type="text" id="showTitle" placeholder="Show Title" required>
+            <input type="text" id="showVenue" placeholder="Venue">
+            <input type="date" id="showDate" required>
+            <button class="btn-primary">Create Show</button>
+          </form>
+          <p id="showMessage" class="msg"></p>
+        </div>
+
+        <h2 class="section-title">All Fashion Shows</h2>
+        <div id="showsList" class="card-grid"></div>
+      </section>
+
+      <section id="viewMyCollections" class="view hidden">
+        <div class="card">
+          <p class="eyebrow">DESIGNER</p>
+          <h2>Submit a New Collection</h2>
+          <form id="collectionForm" class="inline-form">
+            <select id="collectionShow" required>
+              <option value="">Select a Show</option>
+            </select>
+            <input type="text" id="collectionTitle" placeholder="Collection Title" required>
+            <textarea id="collectionDescription" placeholder="Description (optional)"></textarea>
+            <button class="btn-primary">Submit Collection</button>
+          </form>
+          <p id="collectionMessage" class="msg"></p>
+        </div>
+
+        <h2 class="section-title">My Collections</h2>
+        <div id="collectionsList" class="card-grid"></div>
+      </section>
+
+      <section id="viewMyApplications" class="view hidden">
+        <p class="eyebrow">MODEL</p>
+        <h2 class="section-title">My Casting Applications</h2>
+        <p class="hint">Apply to a show from the "Shows" tab. Track your status here.</p>
+        <div id="applicationsList" class="card-grid"></div>
+      </section>
+
+      <section id="viewOrganizer" class="view hidden">
+        <div class="card">
+          <p class="eyebrow">ORGANIZER</p>
+          <h2>Manage a Show</h2>
+          <select id="organizerShowSelect">
+            <option value="">Select a show to manage</option>
+          </select>
+        </div>
+
+        <div id="organizerContent" class="hidden">
+
+          <div class="card">
+            <h3>Show Status</h3>
+            <div class="inline-form-row">
+              <select id="showStatusSelect">
+                <option value="planning">Planning</option>
+                <option value="casting_open">Casting Open</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="completed">Completed</option>
+              </select>
+              <button id="updateShowStatusBtn" class="btn-secondary">Update Status</button>
+            </div>
+            <p id="statusMessage" class="msg"></p>
+          </div>
+
+          <div class="card">
+            <h3>Collections Submitted</h3>
+            <div id="orgCollectionsList" class="card-grid"></div>
+          </div>
+
+          <div class="card">
+            <h3>Casting Applications</h3>
+            <div id="orgApplicationsList" class="card-grid"></div>
+          </div>
+
+          <div class="card">
+            <h3>Build Run-of-Show</h3>
+            <form id="assignmentForm" class="inline-form">
+              <select id="assignLook" required>
+                <option value="">Select Look</option>
+              </select>
+              <select id="assignModel" required>
+                <option value="">Select Accepted Model</option>
+              </select>
+              <input type="number" id="assignWalkOrder" placeholder="Walk Order (1, 2, 3...)" min="1" required>
+              <button class="btn-primary">Add to Run-of-Show</button>
+            </form>
+            <p id="assignmentMessage" class="msg"></p>
+
+            <h4>Current Run-of-Show</h4>
+            <div id="runOfShowList" class="table-wrap"></div>
+          </div>
+
+          <div class="card">
+            <h3>Seating</h3>
+            <form id="seatingForm" class="inline-form">
+              <select id="seatingGuestSelect" required>
+                <option value="">Select Guest</option>
+              </select>
+              <select id="seatingSection" required>
+                <option value="front_row">Front Row</option>
+                <option value="standard">Standard</option>
+              </select>
+              <input type="number" id="seatingNumber" placeholder="Seat Number" min="1" required>
+              <button class="btn-primary">Assign Seat</button>
+            </form>
+            <p id="seatingMessage" class="msg"></p>
+
+            <h4>Current Seating</h4>
+            <div id="seatingList" class="table-wrap"></div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</div>
+
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
